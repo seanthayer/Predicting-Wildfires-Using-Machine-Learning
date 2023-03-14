@@ -1,5 +1,10 @@
+NOAA_header_line_offset = 3
+
 county_list = ["Baker", "Benton", "Clackamas", "Clatsop", "Columbia", "Coos", "Crook", "Curry", "Deschutes",
                "Douglas", "Gilliam", "Grant", "Harney", "Hood River", "Jackson", "Jefferson", "Josephine",
                "Klamath", "Lake", "Lane", "Lincoln", "Linn", "Malheur", "Marion", "Morrow", "Multnomah",
                "Polk", "Sherman", "Tillamook", "Umatilla", "Union", "Wallowa", "Wasco", "Washington",
                "Wheeler", "Yamhill"]
+
+month_list = ["January", "February", "March", "April", "May", "June", "July",
+              "August", "September", "October", "November", "December"]
