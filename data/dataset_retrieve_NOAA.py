@@ -14,7 +14,6 @@ import sys
 import os
 sys.path.append(os.getcwd())
 
-import datetime
 import requests
 import const as const
 
@@ -57,9 +56,13 @@ def parseEntry(entry):
   county_name = const.county_list[const.NOAA_county_code_list.index(identifier_county)]
   data_monthly = entry[14:].split()
   
-  return [",".join([county_name, identifier_year, str(i + 1), data_monthly[i], '\n']) for i in range(0, len(data_monthly))]
+  return [",".join([county_name, identifier_year, str(i + 1), data_monthly[i]]) + '\n' for i in range(0, len(data_monthly))]
 
-# # #
+# # #                 # # #
+#                         #
+# NOAA Dataset Processing #
+#                         #
+# # #                 # # #
 
 NOAA_datasets_URL = "https://www.ncei.noaa.gov/pub/data/cirs/climdiv/"
 
