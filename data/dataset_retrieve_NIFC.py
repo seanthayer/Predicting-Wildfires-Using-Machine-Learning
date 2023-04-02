@@ -23,12 +23,12 @@ import const as const
 def parseEntry(entry):
   county = entry["attributes"]["POOCounty"]
   fireDate = date.fromtimestamp(entry["attributes"]["FireDiscoveryDateTime"] // 1000) # Rounding division by 1000 to convert UNIX Epoch time from milliseconds to seconds
-  X = entry["geometry"]["x"]
-  Y = entry["geometry"]["y"]
-  foundLng = entry["attributes"]["InitialLongitude"] if entry["attributes"]["InitialLongitude"] else ''
-  foundLat = entry["attributes"]["InitialLatitude"] if entry["attributes"]["InitialLatitude"] else ''
+  foundLng = entry["geometry"]["x"]
+  foundLat = entry["geometry"]["y"]
+  originLng = entry["attributes"]["InitialLongitude"] if entry["attributes"]["InitialLongitude"] else ''
+  originLat = entry["attributes"]["InitialLatitude"] if entry["attributes"]["InitialLatitude"] else ''
 
-  return ",".join([county, str(fireDate.year), str(fireDate.month), str(fireDate.day), str(X), str(Y), str(foundLng), str(foundLat)]) + '\n'
+  return ",".join([county, str(fireDate.year), str(fireDate.month), str(fireDate.day), str(foundLng), str(foundLat), str(originLng), str(originLat)]) + '\n'
 
 # # #                 # # #
 #                         #
@@ -70,7 +70,7 @@ print("[INFO] Writing data (rows = {})".format(len(NIFC_dataset)))
 
 # NOTE: This procedure currently writes data in a format non-conformant with other modules
 fileIO = open("./data/datasets/Oregon_Fire_Incidence.csv", 'w')
-fileIO.write("County,Year,Month,Day,X,Y,foundLng,foundLat\n")
+fileIO.write("County,Year,Month,Day,foundLng,foundLat,originLng,originLat\n")
 fileIO.writelines(NIFC_dataset)
 fileIO.close()
 
