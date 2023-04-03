@@ -54,7 +54,7 @@ def parseEntry(entry):
   identifier_year = entry[7:11]
 
   county_name = const.county_list[const.NOAA_county_code_list.index(identifier_county)]
-  data_monthly = entry[14:].split()
+  data_monthly = entry[11:].split()
   
   return [",".join([county_name, identifier_year, str(i + 1), data_monthly[i]]) + '\n' for i in range(0, len(data_monthly))]
 
