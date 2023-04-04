@@ -6,11 +6,11 @@ import datetime as date
 import pandas as pd
 import const as const
 
-# # #                             # # #
-#                                     #
-# This file is pending documentation! #
-#                                     #
-# # #                             # # #
+# # #                        # # #
+#                                #
+# This file is tagged: [DEFUNCT] #
+#                                #
+# # #                        # # #
 
 fileIO = open("./data/Oregon_Fire_Record.csv", 'r')
 contents = fileIO.readlines()

@@ -6,11 +6,11 @@ import datetime as date
 import pandas as pd
 import const as const
 
-# # #                             # # #
-#                                     #
-# This file is pending documentation! #
-#                                     #
-# # #                             # # #
+# # #                        # # #
+#                                #
+# This file is tagged: [DEFUNCT] #
+#                                #
+# # #                        # # #
 
 for county in const.county_list:
   fileIO = open("./data/Temperature_By_County/{}_Temp.csv".format(county), 'r')

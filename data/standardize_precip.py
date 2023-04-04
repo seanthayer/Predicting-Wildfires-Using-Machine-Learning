@@ -6,11 +6,11 @@ import datetime as date
 import pandas as pd
 import const as const
 
-# # #                             # # #
-#                                     #
-# This file is pending documentation! #
-#                                     #
-# # #                             # # #
+# # #                        # # #
+#                                #
+# This file is tagged: [DEFUNCT] #
+#                                #
+# # #                        # # #
 
 for county in const.county_list:
   fileIO = open("./data/Precipitation_By_County/{}_Prec.csv".format(county), 'r')
