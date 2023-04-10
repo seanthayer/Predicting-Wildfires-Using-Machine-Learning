@@ -1,4 +1,16 @@
-# File tags: [PENDING DOCUMENTATION], [DEFUNCT], [WORK IN PROGESS]
+# # #          # # #
+#                  #
+# Global constants #
+#                  #
+# # #          # # #
+
+# # #                                      # # #
+#                                              #
+# This file is tagged: [PENDING DOCUMENTATION] #
+#                                              #
+# # #                                      # # #
+
+# Global file tags: [PENDING DOCUMENTATION], [DEFUNCT], [WORK IN PROGESS]
 
 NOAA_header_line_offset = 3
 
