@@ -88,8 +88,8 @@ NOAA_record_fixed_length = 99
 
 NOAA_datasets = []
 
-query_year_start = 2000
-query_year_stop = 2022
+query_year_start = const.NOAA_dataset_query_year_start
+query_year_stop = const.NOAA_dataset_query_year_stop
 
 query_data_type = ["Precipitation", "Temperature_Mean", "Temperature_Max", "Temperature_Min"] # Sorted in the order of dataset processing
 
