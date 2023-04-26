@@ -1,6 +1,21 @@
-# File tags: [PENDING DOCUMENTATION], [DEFUNCT], [WORK IN PROGESS]
+# # #          # # #
+#                  #
+# Global constants #
+#                  #
+# # #          # # #
+
+# # #                                      # # #
+#                                              #
+# This file is tagged: [PENDING DOCUMENTATION] #
+#                                              #
+# # #                                      # # #
+
+# Global file tags: [PENDING DOCUMENTATION], [DEFUNCT], [WORK IN PROGESS]
 
 NOAA_header_line_offset = 3
+
+NOAA_dataset_query_year_start = 2014
+NOAA_dataset_query_year_stop = 2022
 
 NOAA_county_code_list = ["001", "003", "005", "007", "009", "011", "013", "015", "017", "019", "021", "023",
                          "025", "027", "029", "031", "033", "035", "037", "039", "041", "043", "045", "047",

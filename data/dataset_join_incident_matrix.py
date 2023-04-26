@@ -67,7 +67,7 @@ fileIO_NIFC_fire_incidence.close()
 #                                                                                                                      #
 # # #                                                                                                              # # #
 
-join_matrix = []
+incident_matrix = []
 isJoining = True
 
 i = j = 1 # 1 to skip the header
@@ -84,7 +84,7 @@ while isJoining:
   joinMonth = row_NIFC["month"] == row_NOAA_precip["month"]
 
   if joinCounty and joinYear and joinMonth:
-    join_matrix.append(','.join([
+    incident_matrix.append(','.join([
       row_NIFC["county"],
       row_NIFC["year"],
       row_NIFC["month"],
@@ -109,7 +109,7 @@ while isJoining:
   if i >= len(NIFC_fire_incidence) or j >= len(NOAA_precip):
     isJoining = False
 
-fileIO = open("./data/datasets/Oregon_Join_Matrix.csv", 'w')
+fileIO = open("./data/datasets/Oregon_Incident_Matrix.csv", 'w')
 fileIO.write("County,Year,Month,FoundLng,FoundLat,OriginLng,OriginLat,Precipitation,Temperature_Mean,Temperature_Max,Temperature_Min\n")
-fileIO.writelines(join_matrix)
+fileIO.writelines(incident_matrix)
 fileIO.close()
