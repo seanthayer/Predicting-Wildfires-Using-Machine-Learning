@@ -20,10 +20,10 @@ def parseRow_NIFC(row):
     "year": data[1],
     "month": data[2],
     "day": data[3],
-    "foundLng": data[4],
-    "foundLat": data[5],
-    "originLng": data[6],
-    "originLat": data[7].replace('\n', '') # Remove errant '\n'
+    "fireFoundLng": data[4],
+    "fireFoundLat": data[5],
+    "fireOriginLng": data[6],
+    "fireOriginLat": data[7].replace('\n', '') # Remove errant '\n'
   }
 
 def parseRow_NOAA(row):
@@ -88,10 +88,10 @@ while isJoining:
       row_NIFC["county"],
       row_NIFC["year"],
       row_NIFC["month"],
-      row_NIFC["foundLng"],
-      row_NIFC["foundLat"],
-      row_NIFC["originLng"],
-      row_NIFC["originLat"],
+      row_NIFC["fireFoundLng"],
+      row_NIFC["fireFoundLat"],
+      row_NIFC["fireOriginLng"],
+      row_NIFC["fireOriginLat"],
       row_NOAA_precip["value"],
       row_NOAA_temp["value"],
       row_NOAA_max_temp["value"],
@@ -110,6 +110,6 @@ while isJoining:
     isJoining = False
 
 fileIO = open("./data/datasets/Oregon_Incident_Matrix.csv", 'w')
-fileIO.write("County,Year,Month,FoundLng,FoundLat,OriginLng,OriginLat,Precipitation,Temperature_Mean,Temperature_Max,Temperature_Min\n")
+fileIO.write("County,Year,Month,FireFoundLng,FireFoundLat,FireOriginLng,FireOriginLat,Precipitation,Temperature_Mean,Temperature_Max,Temperature_Min\n")
 fileIO.writelines(incident_matrix)
 fileIO.close()
