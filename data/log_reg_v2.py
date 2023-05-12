@@ -12,7 +12,6 @@ def log_reg_v2():
     df = df.drop(columns='Unnamed: 0', axis=1)
     df = df.drop(columns='County', axis=1)
     df = df.drop(columns='Date', axis=1)
-<<<<<<< HEAD
 
     accuracy = 0
 
@@ -43,29 +42,6 @@ def log_reg_v2():
         accuracy += p
     
     print(accuracy/10)
-=======
-    train_df = df.iloc[0:3400]
-    test_df = df.iloc[3400:]
-    
-    X_train = train_df[['Temperature', 'Prev 1 Temp', 'Prev 2 Temp', 'Precipitation', 'Prev 1 Prec', 'Prev 2 Prec']]
-    Y_train = train_df[['Is_Burned']]
-    Y_train = Y_train.to_numpy()
-    Y_train = Y_train.reshape(-1)
-    X_test = test_df[['Temperature', 'Prev 1 Temp', 'Prev 2 Temp', 'Precipitation', 'Prev 1 Prec', 'Prev 2 Prec']]
-    Y_test = test_df[['Is_Burned']]
-    Y_test = Y_test.to_numpy()
-    Y_test = Y_test.reshape(-1)
-
-    lr = LogisticRegression()
-    lr.fit(X_train, Y_train)
-    Y_pred = lr.predict(X_test)
-    p = 0
-    for i in range(len(Y_test)):
-        if Y_test[i] == Y_pred[i]:
-            p += 1
-    p /= len(Y_test)
-    print(p)
->>>>>>> 02aaf1c4279961d99a3e2b9a3fb36915f388863d
 
 
 
