@@ -195,7 +195,7 @@ def spliceRow(row, attr_indices, attrs):
 
 # # #
 
-if __name__ == "__main__":
+def main():
 
   earth_radius = 3958.75587 # In miles, swappable with other units of measure (e.g., km)
   info_unit_distance = "mi" # Only used for console logs
@@ -275,7 +275,7 @@ if __name__ == "__main__":
 
     print("[INFO] Complete OpenMeteo network requests:")
     print("[INFO]   - Requests sent:        {}".format(query_chunk_size))
-    print("[INFO]   - Responses successful: {}".format(len(OPEN_METEO_datasets)))
+    print("[INFO]   - Responses successful: {}".format(len(list(filter(None, OPEN_METEO_datasets)))))
     print("[INFO]   - Time elapsed:         {}".format(dt))
     print()
 
@@ -387,3 +387,10 @@ if __name__ == "__main__":
 
   print("[INFO] Complete dataset discretization!")
   print("----------------------------------END-------------------------------------")
+
+  return 0
+
+# # #
+
+if __name__ == "__main__":
+  sys.exit(main())
