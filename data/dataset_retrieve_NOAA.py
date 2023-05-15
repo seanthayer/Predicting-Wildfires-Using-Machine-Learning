@@ -8,8 +8,8 @@ import sys
 import os
 sys.path.append(os.getcwd())
 
+import const
 import requests
-import const as const
 
 # # #
 
@@ -74,10 +74,6 @@ def main():
   NOAA_datasets_URL = "https://www.ncei.noaa.gov/pub/data/cirs/climdiv/"
 
   NOAA_state_code_oregon     = "35"
-  NOAA_element_code_precip   = "01"
-  NOAA_element_code_temp     = "02"
-  NOAA_element_code_max_temp = "27"
-  NOAA_element_code_min_temp = "28"
 
   NOAA_filename_general_form = "climdiv-******-vx.y.z-YYYYMMDD"
 
@@ -159,7 +155,7 @@ def main():
     print("[INFO] Writing {} data (rows = {})".format(query_data_type[i], len(dataset_filtered)))
 
     fileIO = open("./data/datasets/Oregon_{}.csv".format(query_data_type[i]), 'w')
-    fileIO.write("County,Year,Month,{}\n".format(query_data_type[i]))
+    fileIO.write(const.NOAA_data_header.format(query_data_type[i]))
     fileIO.writelines(dataset_filtered)
     fileIO.close()
 

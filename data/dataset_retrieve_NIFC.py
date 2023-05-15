@@ -8,19 +8,20 @@ import sys
 import os
 sys.path.append(os.getcwd())
 
-from datetime import date
+import const
 import requests
-import const as const
+
+from datetime import date
 
 # # #
 
-def parseEntry(entry):
-  county = entry["attributes"]["POOCounty"]
-  fireDate = date.fromtimestamp(entry["attributes"]["FireDiscoveryDateTime"] // 1000) # Rounding division by 1000 to convert UNIX Epoch time from milliseconds to seconds
-  fireFoundLng = entry["geometry"]["x"]
-  fireFoundLat = entry["geometry"]["y"]
-  fireOriginLng = entry["attributes"]["InitialLongitude"] if entry["attributes"]["InitialLongitude"] else ''
-  fireOriginLat = entry["attributes"]["InitialLatitude"] if entry["attributes"]["InitialLatitude"] else ''
+def parseRow(row):
+  county = row["attributes"]["POOCounty"]
+  fireDate = date.fromtimestamp(row["attributes"]["FireDiscoveryDateTime"] // 1000) # Rounding division by 1000 to convert UNIX Epoch time from milliseconds to seconds
+  fireFoundLng = row["geometry"]["x"]
+  fireFoundLat = row["geometry"]["y"]
+  fireOriginLng = row["attributes"]["InitialLongitude"] if row["attributes"]["InitialLongitude"] else ''
+  fireOriginLat = row["attributes"]["InitialLatitude"] if row["attributes"]["InitialLatitude"] else ''
 
   return ",".join([county, str(fireDate.year), str(fireDate.month), str(fireDate.day), str(fireFoundLng), str(fireFoundLat), str(fireOriginLng), str(fireOriginLat)]) + '\n'
 
@@ -55,8 +56,8 @@ def main():
 
     # Iterate over the dataset batch, parsing and storing in memory
     for i in range(0, len(NIFC_dataset_partition["features"])):
-      entry = parseEntry(NIFC_dataset_partition["features"][i])
-      NIFC_dataset.append(entry)
+      row = parseRow(NIFC_dataset_partition["features"][i])
+      NIFC_dataset.append(row)
 
     query_result_offset += query_result_batch_size
 
@@ -69,7 +70,7 @@ def main():
   print("[INFO] Writing data (rows = {})".format(len(NIFC_dataset)))
 
   fileIO = open("./data/datasets/Oregon_Fire_Incidence.csv", 'w')
-  fileIO.write("County,Year,Month,Day,FireFoundLng,FireFoundLat,FireOriginLng,FireOriginLat\n")
+  fileIO.write(const.NIFC_data_header)
   fileIO.writelines(NIFC_dataset)
   fileIO.close()
 

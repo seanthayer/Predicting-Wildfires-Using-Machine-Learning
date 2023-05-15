@@ -8,7 +8,7 @@ import sys
 import os
 sys.path.append(os.getcwd())
 
-import const as const
+import const
 
 # # #
 
@@ -112,7 +112,7 @@ def main():
       isJoining = False
 
   fileIO = open("./data/datasets/Oregon_Incident_Matrix.csv", 'w')
-  fileIO.write("County,Year,Month,FireFoundLng,FireFoundLat,FireOriginLng,FireOriginLat,Precipitation,Temperature_Mean,Temperature_Max,Temperature_Min\n")
+  fileIO.write(const.incident_matrix_data_header)
   fileIO.writelines(incident_matrix)
   fileIO.close()
 
