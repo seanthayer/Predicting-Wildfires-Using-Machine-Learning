@@ -1,3 +1,9 @@
+# # #            # # #
+#                    #
+# Top-level pipeline #
+#                    #
+# # #            # # #
+
 import sys
 import os
 os.chdir("./data")

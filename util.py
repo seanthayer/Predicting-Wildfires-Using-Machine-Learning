@@ -1,6 +1,6 @@
 # # #           # # #
 #                   #
-# Utility Functions #
+# Utility functions #
 #                   #
 # # #           # # #
 

@@ -1,3 +1,9 @@
+# # #                     # # #
+#                             #
+# Unit grid joining procedure #
+#                             #
+# # #                     # # #
+
 # # #                                                         # # #
 #                                                                 #
 # This file is tagged: [WORK IN PROGESS], [PENDING DOCUMENTATION] #
