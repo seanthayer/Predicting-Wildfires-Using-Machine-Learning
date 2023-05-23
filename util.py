@@ -4,12 +4,6 @@
 #                   #
 # # #           # # #
 
-# # #                                      # # #
-#                                              #
-# This file is tagged: [PENDING DOCUMENTATION] #
-#                                              #
-# # #                                      # # #
-
 import sys
 import os
 sys.path.append(os.getcwd())
@@ -20,6 +14,8 @@ import requests
 # # #
 
 def parseUnitGrid(unit_grid):
+  # Parse an in-memory unit grid
+
   unit_grid_data = []
 
   for i in range(0, unit_grid.shape[0]):
@@ -32,6 +28,8 @@ def parseUnitGrid(unit_grid):
   return unit_grid_data
 
 def parseUnitGridData(unit_grid_blank, unit_grid_data):
+  # Parse a unit grid read from disk. Parameter "unit_grid_blank" must truly be a unit grid of blank strings, not of "const.unit_grid_data_entry_empty"
+
   for i in range(1, len(unit_grid_data)):
     row_parse = unit_grid_data[i].split(',')
     unit_grid_blank[int(row_parse[1])][int(row_parse[0])] += ','.join(row_parse[2:])

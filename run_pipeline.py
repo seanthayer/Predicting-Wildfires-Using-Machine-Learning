@@ -65,7 +65,8 @@ def main():
 
   print()
 
-  dt = datetime.now() - t_0
+  t_1 = datetime.now()
+  dt = (t_1 - t_0)
 
   print("[PIPELINE] Completed pipeline in {}".format(dt))
 

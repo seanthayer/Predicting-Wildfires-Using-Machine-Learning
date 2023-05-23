@@ -4,11 +4,11 @@
 #                           #
 # # #                   # # #
 
-# # #                                                         # # #
-#                                                                 #
-# This file is tagged: [WORK IN PROGESS], [PENDING DOCUMENTATION] #
-#                                                                 #
-# # #                                                         # # #
+# # #                                # # #
+#                                        #
+# This file is tagged: [WORK IN PROGESS] #
+#                                        #
+# # #                                # # #
 
 import sys
 import os
@@ -26,21 +26,25 @@ SHOW_PLOTS = True
 # # #
 
 def logit(z):
+  # Logistic/Sigmoid function
   return 1 / (1 + np.exp(-z))
 
 def gradient(X, y, w):
+  # Gradient of the negative log likelihood with respect to parameters
   return X.T @ (logit(X @ w) - y)
 
 def negativeLL(X, y, w):
+  # Negative Log Likelihood for logistic regression
   return np.sum(((-y * np.log2(logit(X @ w) + 0.0001)) - ((1 - y) * np.log2(1 - logit(X @ w) + 0.0001))))
 
 def trainLogistic(X, y):
-  a = 0.000000005
-  w = np.zeros((X.shape[1], 1))
+  a = 0.000000005 # Learning rate
+  w = np.zeros((X.shape[1], 1)) # Initialize weights to 0
   nlls = [negativeLL(X, y, w)]
 
+  # Optimize for 10,000 iterations
   for _ in range(10000):
-    w = w - (a * gradient(X, y, w))
+    w = w - (a * gradient(X, y, w)) # Learn a fraction of the gradient
     nlls.append(negativeLL(X, y, w))
 
   return w, nlls
@@ -48,6 +52,8 @@ def trainLogistic(X, y):
 def kFoldCrossValidation(X, y, k):
   fold_size = int(np.ceil(len(X) / k))
 
+  # Permuting the order of the dataset helps mitigate its non-uniformity across
+  # folds and gives a more accurate idea of its actual performance
   idx = np.random.permutation(len(X))
 
   X = X[idx]
@@ -90,6 +96,7 @@ def main():
 
   data = pd.read_csv("./data/datasets/Oregon_Unit_Grid_Train__{}{}__{}x{}.csv".format(const.grid_unit_size, const.info_unit_distance, unit_grid_rows, unit_grid_columns), sep = ',', header = 0)
 
+  # Train on "GridX, GridY, Month, Precip, Temp Mean Max, Temp Mean, Temp Mean Min, Wind Speed Mean Max, Wind Gusts Mean Max, Evapotranspiration Mean"
   trainX = np.hstack((data.iloc[:, 0:2].to_numpy(), data.iloc[:, 8:9].to_numpy(), data.iloc[:, 13:-1].to_numpy()))
   trainX = np.concatenate((np.full((trainX.shape[0], 1), bias), trainX), axis = 1)
   trainY = data.iloc[:, -1:].to_numpy()
