@@ -21,7 +21,7 @@ import pandas as pd
 import seaborn as sns
 import util
 
-SHOW_PLOTS = False
+SHOW_PLOTS = True
 
 # # #
 
@@ -48,7 +48,13 @@ def trainLogistic(X, y):
 def kFoldCrossValidation(X, y, k):
   fold_size = int(np.ceil(len(X) / k))
 
-  acc = []
+  idx = np.random.permutation(len(X))
+
+  X = X[idx]
+  y = y[idx]
+
+  acc_mean = []
+  acc_std = []
   for i in range(k):
 
     start = i * fold_size
@@ -62,11 +68,15 @@ def kFoldCrossValidation(X, y, k):
 
     w, nlls = trainLogistic(trainX, trainY)
 
-    acc.append(np.mean((testX @ w > 0) == testY))
+    predictions = (testX @ w > 0)
+    pred_correct = (predictions == testY)
 
-  acc_mean, acc_std = np.mean(acc), np.std(acc)
+    acc_mean.append(np.mean(pred_correct))
+    acc_std.append(np.std(pred_correct))
 
-  return acc_mean, acc_std
+  acc_mean, acc_std, acc_std_mean, acc_std_std = np.mean(acc_mean), np.std(acc_mean), np.mean(acc_std), np.std(acc_std)
+
+  return acc_mean, acc_std, acc_std_mean, acc_std_std
 
 def main():
 
@@ -78,9 +88,9 @@ def main():
   unit_grid_rows = int(np.ceil((const.oregon_northmost_lat - const.oregon_southmost_lat) / unit_to_decimal_lat_approx))
   unit_grid_columns = int(np.ceil((const.oregon_eastmost_lng - const.oregon_westmost_lng) / unit_to_decimal_lng_approx))
 
-  data = pd.read_csv("./data/datasets/Oregon_Unit_Grid_Train__{}{}__{}x{}.csv".format(const.grid_unit_size, const.info_unit_distance, unit_grid_rows, unit_grid_columns))
+  data = pd.read_csv("./data/datasets/Oregon_Unit_Grid_Train__{}{}__{}x{}.csv".format(const.grid_unit_size, const.info_unit_distance, unit_grid_rows, unit_grid_columns), sep = ',', header = 0)
 
-  trainX = data.iloc[:, 13:-1].to_numpy()
+  trainX = np.hstack((data.iloc[:, 0:2].to_numpy(), data.iloc[:, 8:9].to_numpy(), data.iloc[:, 13:-1].to_numpy()))
   trainX = np.concatenate((np.full((trainX.shape[0], 1), bias), trainX), axis = 1)
   trainY = data.iloc[:, -1:].to_numpy()
 
@@ -107,8 +117,8 @@ def main():
   # # #
 
   for k in [2, 5, 10, 20]:
-    acc, std = kFoldCrossValidation(trainX, trainY, k)
-    print("[INFO] {}-Fold accuracy: {:.4}% ({:.4}%)".format(k, acc * 100, std * 100))
+    acc_mean, acc_std, std_mean, std_std = kFoldCrossValidation(trainX, trainY, k)
+    print("[INFO] {}-Fold accuracy: {:.4}% ({:.4}%) , {:.4}% ({:.4}%)".format(k, acc_mean * 100, acc_std * 100, std_mean * 100, std_std * 100))
 
   return 0
 
