@@ -1,7 +1,7 @@
 # Predicting Wildfires Using Machine Learning
 
-![poster_img_captions_background](https://github.com/seanthayer/Predicting-Wildfires-Using-Machine-Learning/assets/72107207/f83bcc60-bb29-4f3d-9b04-07b27206aa07)
-**Figure 1**: A high-level illustration showing some of the considered factors, the discretization of Oregon, and a hypothetical final output of the model’s predictions.
+![poster_img_captions_background](https://github.com/seanthayer/Predicting-Wildfires-Using-Machine-Learning/assets/72107207/fdb232e9-c7fd-4f6e-b141-e1a009090c8c)
+**Figure 1**: A high-level illustration showing some of the considered factors, the discretization of Oregon, and a hypothetical final output of the model’s predictions
 
 &nbsp;
 
@@ -39,7 +39,7 @@ Same major versions of Python 3 should function correctly when invoking the inte
 
 &nbsp;
 
-<img src="https://github.com/seanthayer/Predicting-Wildfires-Using-Machine-Learning/assets/72107207/45c94d23-9e0e-421d-8052-0e4f94bee479" width="840px" height="265px"/>
+<img src="https://github.com/seanthayer/Predicting-Wildfires-Using-Machine-Learning/assets/72107207/8793a758-a2fc-4036-9abb-8676831eae15" width="840px" height="265px"/>
 
 **Figure 2**: A simple dependency graph showing pipeline stages and their prerequisites
 
