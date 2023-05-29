@@ -245,7 +245,7 @@ def main():
   fileIO.close()
 
   for chunk in range(query_chunks):
-    os.remove("./data/datasets/_OPEN_METEO_CHUNK_{}.csv".format(chunk + 1))
+    os.remove("./data/datasets/__OPEN_METEO_CHUNK_{}.csv".format(chunk + 1))
 
   print("[INFO] Complete dataset discretization!")
   print("----------------------------------END-------------------------------------")
