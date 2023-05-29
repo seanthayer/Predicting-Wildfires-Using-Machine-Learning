@@ -21,7 +21,7 @@ import pandas as pd
 import seaborn as sns
 import util
 
-SHOW_PLOTS = True
+SHOW_PLOTS = False
 
 # # #
 
@@ -117,9 +117,24 @@ def main():
 
   pred_acc_mean, pred_acc_std = (np.mean(pred_correct) * 100), (np.std(pred_correct) * 100)
 
-  print("[INFO] One-shot accuracy (bias = {}): {:.4}% ({:.4}%)".format(bias, pred_acc_mean, pred_acc_std))
+  print("[INFO] Self-reported accuracy (bias = {}): {:.4}% ({:.4}%)".format(bias, pred_acc_mean, pred_acc_std))
 
   print()
+
+  # Confusion matrix
+
+  pred_tp = sum((predictions & pred_correct))
+  pred_tn = sum(((~predictions) & pred_correct))
+  pred_fp = sum((predictions & (~pred_correct)))
+  pred_fn = sum(((~predictions) & (~pred_correct)))
+
+  # This looks awful, but it seems to print fine
+  print("[INFO] Confusion matrix:")
+  print("[INFO]   \t\t\t\t      | Predicted |")
+  print("[INFO]   \t\t\t      [Positive]\t[Negative]")
+  print("[INFO]   \t      [Positive]\t{}\t\t  {}".format(pred_tp, pred_fn))
+  print("[INFO]   | Actual |")
+  print("[INFO]   \t      [Negative]\t{}\t\t  {}".format(pred_fp, pred_tn))
 
   # # #
 
